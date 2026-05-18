@@ -17,6 +17,7 @@
       * [Consecuencias](#consecuencias)
 * [3. MEJORA CONTINUA](#3-mejora-continua)
     * [Cuándo usar enfoque clásico o nativo en Python?](#cuándo-usar-cuál-en-python)
+    * [El problema del Lienzo limpio](#el-lienzo-limpio-del-patrón-builder)
 
 # 1. EJERCICIO
 
