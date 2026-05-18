@@ -144,12 +144,14 @@ classDiagram
     
     %% Definición de la Abstracción (Tipos de Notificación)
     
-    class Notificacion {
+    class AbstraccionNotificacion {
         <<abstract>>
-        # _plataforma: PlataformaImplementacion
-        + __init__(plataforma: PlataformaImplementacion)
+        # _plataforma: ImplementacionPlataforma
+        + __init__(plataforma: ImplementacionPlataforma)
         + enviar(titulo: str, contenido: str)*
     }
+
+    Client --> AbstraccionNotificacion : << delegate >>
     
     class NotificacionMensaje {
         + enviar(titulo: str, contenido: str)
@@ -158,15 +160,20 @@ classDiagram
     class NotificacionAlerta {
         + enviar(titulo: str, contenido: str)
     }
-    
-    Notificacion <|-- NotificacionMensaje : << realizes >>
-    Notificacion <|-- NotificacionAlerta : << realizes >>
+
+    class NotificacionConfirmacion {
+        + enviar(titulo: str, contenido: str)
+    }
+
+    AbstraccionNotificacion <|-- NotificacionMensaje : << realizes >>
+    AbstraccionNotificacion <|-- NotificacionAlerta : << realizes >>
+    AbstraccionNotificacion <|-- NotificacionConfirmacion : << realizes >>
     
     %% Bridge (Composición)
-    Notificacion --> PlataformaImplementacion : << delegate >>
+    AbstraccionNotificacion o-- ImplementacionPlataforma : << contains >>
     
     %% Definición de Implementación (Plataforma)
-    class PlataformaImplementacion {
+    class ImplementacionPlataforma {
         <<interface>>
         + renderizar_mensaje(titulo: str, mensaje: str)*
         + renderizar_alerta(titulo: str, mensaje: str)*
@@ -185,11 +192,12 @@ classDiagram
         + renderizar_confirmacion(titulo: str, mensaje: str)
     }
     
-    PlataformaImplementacion <|-- PlataformaWeb : << realizes >>
-    PlataformaImplementacion <|-- PlataformaMovil : << realizes >>
+    ImplementacionPlataforma <|-- PlataformaWeb : << realizes >>
+    ImplementacionPlataforma <|-- PlataformaMovil : << realizes >>
     
-    %% Relaciones y Dependencias
-    Client --> Notificacion : << delegate >>
+    %% Nota flotante con estilos personalizados (Bordes rojos, fondo blanco, texto rojo)
+    class NotaExplicativa ["<span style='color:#d9534f;'><b>PATRÓN BRIDGE</b><br/>Compuesto de la abstracción de Notificación<br/> y la implementación de la plataforma .</span>"]
+    style NotaExplicativa fill:#ffffff,stroke:#d9534f,stroke-dasharray: 4 4    
 ```
 </div>
 
