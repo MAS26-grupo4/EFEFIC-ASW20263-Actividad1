@@ -2,7 +2,7 @@
 # Entornos Virtuales de Python (Excluir)
 # ==========================================
 # Carpeta estándar de venv
-../.venv/
+../../../.venv/
 venv/
 env/
 ENV/
