@@ -1,0 +1,33 @@
+# ==========================================
+# Entornos Virtuales de Python (Excluir)
+# ==========================================
+# Carpeta estándar de venv
+.venv/
+venv/
+env/
+ENV/
+
+# Otras herramientas de entornos comunes
+bin/
+include/
+lib/
+lib64/
+share/
+pip-wheel-metadata/
+
+# Entornos de Conda
+.conda/
+conda-env/
+
+# Entornos de Poetry y Pipenv
+.venv
+.pipenv
+.pytest_cache/
+.mypy_cache/
+
+# ==========================================
+# Archivos de caché y compilación de Python
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
