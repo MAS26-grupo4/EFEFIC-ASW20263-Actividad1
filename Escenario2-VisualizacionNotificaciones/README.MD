@@ -144,14 +144,14 @@ classDiagram
     
     %% Definición de la Abstracción (Tipos de Notificación)
     
-    class AbstraccionNotificacion {
+    class AbstraccionNotificaciones {
         <<abstract>>
         # _plataforma: ImplementacionPlataforma
         + __init__(plataforma: ImplementacionPlataforma)
         + enviar(titulo: str, contenido: str)*
     }
 
-    Client --> AbstraccionNotificacion : << delegate >>
+    Client --> AbstraccionNotificaciones : << delegate >>
     
     class NotificacionMensaje {
         + enviar(titulo: str, contenido: str)
@@ -165,12 +165,12 @@ classDiagram
         + enviar(titulo: str, contenido: str)
     }
 
-    AbstraccionNotificacion <|-- NotificacionMensaje : << realizes >>
-    AbstraccionNotificacion <|-- NotificacionAlerta : << realizes >>
-    AbstraccionNotificacion <|-- NotificacionConfirmacion : << realizes >>
+    AbstraccionNotificaciones <|-- NotificacionMensaje : << realizes >>
+    AbstraccionNotificaciones <|-- NotificacionAlerta : << realizes >>
+    AbstraccionNotificaciones <|-- NotificacionConfirmacion : << realizes >>
     
     %% Bridge (Composición)
-    AbstraccionNotificacion o-- ImplementacionPlataforma : << contains >>
+    AbstraccionNotificaciones o-- ImplementacionPlataforma : << contains >>
     
     %% Definición de Implementación (Plataforma)
     class ImplementacionPlataforma {
