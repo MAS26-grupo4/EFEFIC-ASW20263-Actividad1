@@ -220,3 +220,20 @@ mismos métodos, si una plataforma no soporta algún tipo de notificación debo 
 obligatoriamente la interfaz de la plataforma y sus clases hijas.
 
 ## 3. MEJORA CONTINUA
+
+Para el escenario con métodos tan similares (dado que uso print para renderizar el mensaje, 
+es evidente que hay "code smells", en éste caso, cada implementación de plataforma debe 
+implementar sus propios métodos de renderizado de mensaje y dichos métodos en éste caso 
+simple son idénticos, lo que varía es parte del mensaje atado a la plataforma, por lo demás 
+es exactamente igual (llamaría a la refactorización de código). Ésto se puede corregir de varias formas,
+una sería con la implementación de un formateador de texto externo, asegurando el enfoque de 
+composición, mejorarndo la legibilidad y complejidad, sin embargo, es más común encontrar que 
+éste patrón de Bridge se implemente junto a otros patrones, en éste caso, encajaría muy bien 
+con un patrón como ***Template Method*** dado que los algoritmos de renderizado del mensaje son
+casi idénticos (diferencias mínimas) y nos permitiría contrlar la edición de todas las clases 
+cuando el algoritmo cambie.
+
+NOTA: En caso de que cada plataforma implemente métodos con grandes diferencias no sería tan 
+notorio éste hallazgo que además el IDE también lo notifica (ésto se debe a que el fin es académico
+y por tal motivo el renderizado completo para las 3 notificaciones en los 2 plataformas lo hago
+con un print, pero en un caso real, estaría usando APIs y librerías diferentes.

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Descripción: Plataforma Web
+Descripción: Plataforma Móvil
 """
 
 # Metadatos del módulo
@@ -12,16 +12,16 @@ __status__ = "Development"  # Prototype, Development, o Production
 
 from src.notificaciones.implementations.interfaz_plataformas import ImplementacionPlataforma
 
-class PlataformaWeb(ImplementacionPlataforma):
+class PlataformaMovil(ImplementacionPlataforma):
     """
-    Implementación de plataforma Web
+    Implementación de Plataforma Móvil
     """
 
     def renderizar_mensaje(self, titulo: str, mensaje: str) -> None:
-        print (f"🌐 [WEB] Mensaje -> {titulo}: {mensaje}")
+        print (f"📱 [MÓVIL] Mensaje -> {titulo}: {mensaje}")
 
     def renderizar_alerta(self, titulo: str, mensaje: str) -> None:
-        print (f"🌐 [WEB] ⚠️ ALERTA ⚠️ -> {titulo}: {mensaje}")
+        print (f"📱 [MÓVIL] ⚠️ ALERTA ⚠️ -> {titulo}: {mensaje}")
 
     def renderizar_confirmacion(self, titulo: str, mensaje: str) -> None:
-        print (f"[WEB] ✅ Confirmación -> {titulo}: {mensaje}")
+        print (f"📱 [MÓVIL] ✅ Confirmación -> {titulo}: {mensaje}")
