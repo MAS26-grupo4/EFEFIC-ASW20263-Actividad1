@@ -196,9 +196,19 @@ classDiagram
 #### Consecuencias
 
 **Ventajas**
-
+- *Principio de Responsabilidad Única (SOLID):* La lógica del negocio (mensajes) queda 
+totalmente aislada de la lógica de infraestructura (plataforma).
+- *Principio de Abierto/Cerrado (SOLID):* Puedo implementar nuevas plataformas y/o nuevos tipos
+de notificaciones sin modificar las clases existentes.
+- *Intercambio Dinámico:* Puedo cambiar la plataforma destino de la notificación en tiempo
+de ejecución.
+- 
 **Desventajas**
-
----
+- *Complejidad Inicial (Sobreingeniería):* Para el escenario particular podría identificar como 
+sobreingeniería dado que son pocas plataformas y métodos de notificación. 
+- *Contrato de Interfaz Rígido:* La interfaz obliga a todas las plataformas a implementar los 
+mismos métodos, si una plataforma no soporta algún tipo de notificación debo lanzar excepciones.
+- *Acoplamiento de Métodos:* Si se añade un método a la abstracción, tengo que actualizar 
+obligatoriamente la interfaz de la plataforma y sus clases hijas.
 
 ## 3. MEJORA CONTINUA
