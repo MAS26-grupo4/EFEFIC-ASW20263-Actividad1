@@ -171,3 +171,42 @@ y difícil de mantener si le agregas demasiadas tareas.
 Mediador puede saturarse si no está bien optimizado.
 
 ## 3. MEJORA CONTINUA
+
+Dado que el en la interfaz mediador requerirá de la clase abastracta Usuario la cual también 
+utiliza la implementación concreta del mediador (ChatTextoMediador) se presentará una referencia 
+circular entre ambos que detectará el IDE y el intérprete de Python, por ésta razón, debo hacer 
+uso de una especie de filtro para que el interprete no lo evalué previamente a la construcción 
+del objeto, para ello tengo 2 opciones de gestionarlo:
+
+1. Usar ***from __future__import annotations***:
+
+- Cuando estoy trabajando en un solo archivo y una clase necesita hacer referencia a sí misma
+(por ejemplo, un método dentro de Usuario que reciba a otro Usuario)
+- Cuando quiera usar nombres de clases que están definidas más abajo en el mismo archivo
+
+2. Usar ***TYPE_CHECKING***:
+
+- Cuando tengo un archivo *"archivo_A.py"* que necesita saber el tipo de una clase en 
+*"archivo_B.py"* y el archivo *"archivo_B.py"* necesita saber el tipo de una clase en 
+archivo *"archivo_A.py"*. **< referencia circular >** conectar 2 clases concretas que dependen
+entre si.
+- Cuando quiero un código súper limpio y *no quiero crear un archivo intermedio* como el de 
+*"interfaces.py"*
+
+```python
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    # Esto SOLO lo lee tu editor de código (VS Code, PyCharm, etc.)
+    # El motor de Python IGNORA por completo esta línea al correr el programa
+    from usuario import ChatUsuario 
+```
+
+### Diferencias 
+
+| Característica | `from __future__ import annotations` | `TYPE_CHECKING` |
+| :--- | :--- | :--- |
+| **¿Qué hace?** | Convierte las pistas de tipo en cadenas de texto en todo el archivo. | Permite importar archivos en un bloque oculto solo para el editor. |
+| **¿Evita la carga del archivo?** | **No**. Si importas el archivo arriba, Python intentará cargarlo de todos modos. | **Sí**. Evita que Python cargue el archivo importado cuando ejecutas el código. |
+| **Uso principal** | Evitar errores cuando una clase se referencia a sí misma o no se ha definido abajo. | Romper de raíz las importaciones circulares entre archivos diferentes. |
+
