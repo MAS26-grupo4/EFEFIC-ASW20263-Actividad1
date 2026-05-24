@@ -115,38 +115,40 @@ A continuación el diagrama de clases en formato mermaid:
 classDiagram
     class ChatMediador {
         <<interface>>
-        +registrar_usuario(usuario: Usuario)
+        +registrar_usuario(usuario: UsuarioAbstracto)
         +enviar_mensaje_privado(id_emisor: str, id_receptor: str, mensaje: str)
         +enviar_mensaje_grupal(id_emisor: str, id_grupo: str, mensaje: str)
     }
 
     class ChatTextoMediador {
-        -usuarios: dict
-        -grupos: dict
+        -usuarios: dict [str, UsuarioAbstracto]
+        -grupos: dict [str, list [str]]
         +registrar_usuario(usuario: Usuario)
-        +crear_grupo(id_grupo: str, ids_usuarios: list)
+        +crear_grupo(id_grupo: str, ids_usuarios: list [str])
         +enviar_mensaje_privado(id_emisor: str, id_receptor: str, mensaje: str)
-        +send_group_message(sender_id: str, group_id: str, mensaje: str)
+        +enviar_mensaje_grupal(id_emisor: str, id_grupo: str, mensaje: str)
     }
 
-    class Usuario {
+    class UsuarioAbstracto {
         <<abstract>>
         -mediador: ChatMediador
         -id_usuario: str
         -nombre: str
         +enviar_mensaje_privado(id_receptor: str, mensaje: str)
         +enviar_mensaje_grupal(id_grupo: str, mensaje: str)
-        +recibir_mensaje(id_emisor: str, mensaje: str, es_grupal: bool)*
+        +recibir_mensaje(id_emisor: str, nombre_emisor: str, mensaje: str, es_grupal: bool)*
     }
 
     class ChatUsuario {
-        +recibir_mensaje(id_emisor: str, mensaje: str, es_grupal: bool)
+        +enviar_mensaje_privado(id_receptor: str, mensaje: str)
+        +enviar_mensaje_grupal(id_grupo: str, mensaje: str)
+        +recibir_mensaje(id_emisor: str, nombre_emisor: str, mensaje: str, es_grupal: bool)
     }
 
     ChatMediador <|.. ChatTextoMediador : Implementa
-    Usuario <|-- ChatUsuario : Hereda
-    Usuario --> ChatMediador : Usa para enviar mensajes
-    ChatTextoMediador --> Usuario : Guarda y notifica a
+    UsuarioAbstracto <|-- ChatUsuario : Hereda
+    UsuarioAbstracto --> ChatMediador : Usa para enviar mensajes
+    ChatTextoMediador --> UsuarioAbstracto : Guarda y notifica a
     
 ```
 </div>
