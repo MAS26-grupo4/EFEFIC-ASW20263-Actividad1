@@ -10,9 +10,10 @@ __author__ = "Andrés M. Correa"
 __email__ = "andrescor@unisabana.edu.co"
 __status__ = "Developement"  # Prototype, Development, o Production
 
-from notificaciones.abstractions.alerta import NotificacionAlerta
-from notificaciones.abstractions.mensaje import NotificacionMensaje
-from notificaciones.abstractions.confirmacion import NotificacionConfirmacion
+#import src
+from src.notificaciones.abstractions.alerta import NotificacionAlerta
+from src.notificaciones.abstractions.mensaje import NotificacionMensaje
+from src.notificaciones.abstractions.confirmacion import NotificacionConfirmacion
 from src.notificaciones.implementations.plataforma_web import PlataformaWeb
 from src.notificaciones.implementations.plataforma_movil import PlataformaMovil
 
