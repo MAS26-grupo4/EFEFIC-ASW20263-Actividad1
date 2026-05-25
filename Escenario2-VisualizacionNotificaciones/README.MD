@@ -6,8 +6,9 @@
     * [Beneficios](#beneficios-esperados-de-la-solución)
 * [2. SOLUCIÓN](#2-solución)
     * [Análisis](#análisis)
-      * [Factory Method](#factory-method)
-      * [Builder](#builder)
+      * [Bridge](#bridge)
+      * [Facade](#facade)
+      * [Composite](#composite)
     * [Decisiones](#decisiones)
       * [ADR](#adr-adopción-del-patrón-de-diseño-builder-para-la-creación-de-objetos-complejos)
       * [Contexto y Problema](#contexto-y-problema)
@@ -16,8 +17,6 @@
       * [Diagrama de Clases](#diagrama-de-clases)
       * [Consecuencias](#consecuencias)
 * [3. MEJORA CONTINUA](#3-mejora-continua)
-    * [Cuándo usar enfoque clásico o nativo en Python?](#cuándo-usar-cuál-en-python)
-    * [El problema del Lienzo limpio](#el-lienzo-limpio-del-patrón-builder)
 
 # 1. EJERCICIO
 
@@ -87,7 +86,7 @@ complejo de clases.
 - Necesito una interfaz limitada pero directa a un subsistema complejo.
 - Quiero estructurar un subsistema en capas.
 
-### Facade
+### Composite
 
 **Propósito:**
 

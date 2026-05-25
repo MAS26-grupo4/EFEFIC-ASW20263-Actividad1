@@ -17,7 +17,7 @@ from src.notificaciones.implementations.plataforma_web import PlataformaWeb
 from src.notificaciones.implementations.plataforma_movil import PlataformaMovil
 
 
-if __name__ == "__main__":
+def main():
     canal_web = PlataformaWeb()
     alerta = NotificacionAlerta(canal_web)
     mensaje = NotificacionMensaje(canal_web)
@@ -35,3 +35,7 @@ if __name__ == "__main__":
     print("\n\n----- Notificaciones Móviles -----")
     alerta_movil.enviar("Alerta de batería", "Batería baja.")
     confirmacion_movil.enviar("Confirmación", "Confirmación OK")
+
+if __name__ == "__main__":
+    main()
+
